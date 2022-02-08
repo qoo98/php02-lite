@@ -36,7 +36,7 @@ else{
             $sql = 'INSERT INTO images(image_url, image_type, image_content, created_at)
                             VALUES (:image_url, :image_type, :image_content, now())';
                     $stmt = $pdo->prepare($sql);
-                    $stmt->bindValue(':image_url', $name, PDO::PARAM_STR);
+                    $stmt->bindValue(':image_url', $path_file, PDO::PARAM_STR);
                     $stmt->bindValue(':image_type', $type, PDO::PARAM_STR);
                     $stmt->bindValue(':image_content', $content, PDO::PARAM_STR);
             

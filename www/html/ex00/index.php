@@ -36,7 +36,7 @@ $db->query("insert into tb1(id, username,message,time) values(null,'$username','
 
 $stmt = $db->prepare('select * from tb1 order by id desc');
 $stmt->execute();
-
+$loopcount = $stmt->rowCount();
 
 $db = null;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -66,7 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <br><br>
 </form>
 
-    <h2>投稿一覧</h2>
+<h2>投稿一覧
+    <?php echo "(${loopcount}件)"; ?>
+</h2>
 <ul>
 <?php $count = 0;?>
 <?php foreach($stmt as $loop) {?>
@@ -74,9 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php $count = $count + 1;}?>
 <?php if($count == 0) {
     echo "まだ投稿はありません";
-}else {
-        echo "(${count}件)";
-    }?>
+}?>
 </ul>
 </body>
 </html>
